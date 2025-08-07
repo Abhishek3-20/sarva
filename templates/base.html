@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Educademy{% endblock %}</title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="navbar bg-base-100 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex-1">
+                <a href="{% url 'home' %}" class="btn btn-ghost text-xl">Educademy</a>
+            </div>
+            <div class="flex-none">
+                <ul class="menu menu-horizontal px-1">
+                    <li><a href="{% url 'course_list' %}">Courses</a></li>
+                    {% if user.is_authenticated %}
+                        <li>
+                            <details>
+                                <summary>
+                                    <div class="avatar">
+                                        <div class="w-8 rounded-full">
+                                            {% if user.profile_picture %}
+                                                <img src="{{ user.profile_picture.url }}" />
+                                            {% else %}
+                                                <img src="{% static 'images/default-avatar.png' %}" />
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </summary>
+                                <ul class="p-2 bg-base-100 rounded-t-none">
+                                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                                    {% if user.is_instructor %}
+                                        <li><a href="{% url 'instructor_dashboard' %}">Instructor Dashboard</a></li>
+                                    {% endif %}
+                                    <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                                </ul>
+                            </details>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'account_login' %}">Login</a></li>
+                        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        {% if messages %}
+            <div class="space-y-2 mb-6">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} shadow-lg">
+                        <div>
+                            <span>{{ message }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer p-10 bg-base-200 text-base-content">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <span class="footer-title">Educademy</span>
+                    <p>Learn from the best instructors around the world.</p>
+                </div>
+                <div>
+                    <span class="footer-title">Company</span>
+                    <a class="link link-hover">About us</a>
+                    <a class="link link-hover">Contact</a>
+                    <a class="link link-hover">Careers</a>
+                </div>
+                <div>
+                    <span class="footer-title">Legal</span>
+                    <a class="link link-hover">Terms of use</a>
+                    <a class="link link-hover">Privacy policy</a>
+                    <a class="link link-hover">Cookie policy</a>
+                </div>
+                <div>
+                    <span class="footer-title">Newsletter</span>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Enter your email address</span>
+                        </label>
+                        <div class="relative">
+                            <input type="text" placeholder="username@site.com" class="input input-bordered w-full pr-16">
+                            <button class="btn btn-primary absolute top-0 right-0 rounded-l-none">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <footer class="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
+        <div class="container mx-auto flex justify-between items-center">
+            <p>© 2023 Educademy. All rights reserved.</p>
+            <div class="flex space-x-4">
+                <a><i class="fab fa-twitter text-xl"></i></a>
+                <a><i class="fab fa-facebook text-xl"></i></a>
+                <a><i class="fab fa-instagram text-xl"></i></a>
+                <a><i class="fab fa-linkedin text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
