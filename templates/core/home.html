@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{%load static%}
+
+{% block title %}Welcome to Sarva{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-cover bg-center flex flex-col items-center justify-center"
+     style="background-image: url('{% static 'images/home-bg.png' %}');">
+
+    <div class="bg-black bg-opacity-50 p-8 rounded-lg shadow-lg text-center">
+        <h1 class="text-4xl font-bold mb-6 text-white">🎓 Welcome to Sarva</h1>
+        <p class="text-lg mb-6 text-white">
+            A next-gen learning platform for students of class 8 to 10 — powered by quizzes, motivation, AI, games, and more.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="/quizzes/" class="btn btn-outline btn-primary">Start Quiz</a>
+            <a href="/assistant/" class="btn btn-outline btn-accent">Ask AI</a>
+            <a href="/games/" class="btn btn-outline btn-secondary">Play Games</a>
+            <a href="/motivation/" class="btn btn-outline btn-success">Get Motivation</a>
+            <a href="/rankings/" class="btn btn-outline btn-warning">View Rankings</a>
+            <a href="/performance/" class="btn btn-outline btn-info">Check Performance</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -27,5 +27,6 @@ urlpatterns = [
     path('rankings/', include('rankings.urls')),
     path('performance/', include('performance.urls')),
     path('guide/', include('guide.urls')),
-    path('', include('core.urls')),  # Homepage
+    path('', include('core.urls')), 
+    path('accounts/', include('allauth.urls')), 
 ]

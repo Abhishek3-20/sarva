@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_celery_results',
     'django_celery_beat',
     'daphne',
+    "widget_tweaks",
 
     # Local apps
     'users.apps.UsersConfig',
@@ -204,3 +205,4 @@ CKEDITOR_5_CONFIGS = {
     }
 }
 
+LOGIN_URL = '/login/'

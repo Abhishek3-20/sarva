@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Auth{% endblock %} — Sarva</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themes.css' %}">
+</head>
+<body class="min-h-screen flex items-center justify-center {% block bg %}{% endblock %}">
+
+<div class="bg-base-100 rounded-xl shadow-2xl p-8 w-full max-w-md transform transition-all hover:scale-[1.01]">
+    <h2 class="text-3xl font-bold text-center mb-6">{% block heading %}{% endblock %}</h2>
+
+    {% block form %}{% endblock %}
+
+    <div class="divider">Or continue with</div>
+    <div class="flex gap-4">
+        <a href="{% provider_login_url 'google' %}" class="btn btn-outline w-1/2">
+            <img src="{% static 'images/google.svg' %}" class="w-5 h-5 mr-2"> Google
+        </a>
+        <a href="{% provider_login_url 'github' %}" class="btn btn-outline w-1/2">
+            <img src="{% static 'images/github.svg' %}" class="w-5 h-5 mr-2"> GitHub
+        </a>
+    </div>
+
+    {% block footer %}{% endblock %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Notes - Sarva{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-4">📝 Notes</h1>
+<div class="card bg-base-200 p-6 mb-6 shadow-md">
+  <h2 class="text-xl font-semibold">Write or view your notes</h2>
+  <textarea class="textarea textarea-bordered w-full h-40 mb-2" placeholder="Write your notes here..."></textarea>
+  <button class="btn btn-primary">Save Note</button>
+</div>
+{% endblock %}

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    
     'crispy_forms',
     'crispy_bootstrap5',
     'taggit',
@@ -42,11 +43,23 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
     'django_celery_results',
     'django_celery_beat',
+    "widget_tweaks",
 
     # Your apps
+    
+
     'users.apps.UsersConfig',
     'courses.apps.CoursesConfig',
-    
+    'assistant',
+    'motivation',
+    'quizzes',
+    'notes',
+    'rankings',
+    'performance',
+    'guide',
+    'games',
+    'core',
+
 
 ]
 

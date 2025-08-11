@@ -1,0 +1,79 @@
+<script>
+function toggleNotes() {
+    const panel = document.getElementById('notes-panel');
+    panel.classList.toggle('translate-y-full');
+}
+
+function loadNotes() {
+    fetch('/notes/get/')
+        .then(res => res.json())
+        .then(data => {
+            const list = document.getElementById('notes-list');
+            list.innerHTML = '';
+            data.notes.forEach(note => {
+                list.innerHTML += `
+                    <div class="p-2 rounded shadow flex justify-between items-start"
+                         style="background-color: #DEDBD2; color: #4A5759;">
+                        <div class="flex-1 break-words" id="note-content-${note.id}">
+                            ${note.content}
+                        </div>
+                        <div class="flex flex-col gap-1 ml-2">
+                            <button class="btn btn-xs btn-warning" onclick="editNotePrompt(${note.id}, '${note.content.replace(/'/g, "\\'")}')">✏</button>
+                            <button class="btn btn-xs btn-error" onclick="deleteNote(${note.id})">🗑</button>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+}
+
+function saveNote() {
+    const content = document.getElementById('note-content').value;
+    if (content.trim() === '') return;
+    fetch('/notes/save/', {
+        method: 'POST',
+        headers: {'X-CSRFToken': getCookie('csrftoken')},
+        body: new URLSearchParams({'content': content})
+    }).then(() => {
+        document.getElementById('note-content').value = '';
+        loadNotes();
+    });
+}
+
+function editNotePrompt(noteId, oldContent) {
+    const newContent = prompt("Edit your note:", oldContent);
+    if (newContent && newContent.trim() !== '') {
+        fetch(`/notes/edit/${noteId}/`, {
+            method: 'POST',
+            headers: {'X-CSRFToken': getCookie('csrftoken')},
+            body: new URLSearchParams({'content': newContent})
+        }).then(() => loadNotes());
+    }
+}
+
+function deleteNote(noteId) {
+    if (confirm("Are you sure you want to delete this note?")) {
+        fetch(`/notes/delete/${noteId}/`, {
+            method: 'POST',
+            headers: {'X-CSRFToken': getCookie('csrftoken')}
+        }).then(() => loadNotes());
+    }
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        document.cookie.split(';').forEach(cookie => {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            }
+        });
+    }
+    return cookieValue;
+}
+
+document.getElementById('notes-panel').addEventListener('transitionend', function() {
+    if (!this.classList.contains('translate-y-full')) loadNotes();
+});
+</script>

@@ -1,0 +1,33 @@
+{% extends "account/auth_base.html" %}
+
+{% load socialaccount %}
+{% load widget_tweaks %}
+
+{% block title %}Sign Up{% endblock %}
+{% block bg %}bg-gradient-to-br from-green-400 via-blue-500 to-purple-500{% endblock %}
+{% block heading %}Create Your Account ✨{% endblock %}
+
+{% block form %}
+<form method="post" action="{% url 'account_signup' %}" class="space-y-5">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="relative">
+        {% render_field field class="peer w-full rounded-lg border border-gray-300 px-3 pt-5 pb-2 focus:outline-none focus:ring-2 focus:ring-primary bg-transparent" placeholder=" " %}
+        <label class="absolute left-3 top-2.5 text-gray-500 text-sm transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-2.5 peer-focus:text-sm peer-focus:text-primary">
+            {{ field.label }}
+        </label>
+        {% for error in field.errors %}
+            <p class="text-error text-sm mt-1">{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success w-full">Sign Up</button>
+</form>
+{% endblock %}
+
+{% block footer %}
+<p class="mt-6 text-center text-sm">
+    Already have an account?
+    <a href="{% url 'account_login' %}" class="text-primary hover:underline">Login</a>
+</p>
+{% endblock %}

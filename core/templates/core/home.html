@@ -1,3 +1,17 @@
-<!-- templates/core/home.html -->
-<h1>Welcome to Educademy 🚀</h1>
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-6">
+  <h1 class="text-3xl font-bold mb-4">Welcome to Sarva 🎨</h1>
+  
+  <div class="card bg-base-200 text-base-content shadow p-4">
+    <h2 class="text-xl font-bold">Themed Card</h2>
+    <p>This card and text should change with the selected theme.</p>
+  </div>
 
+  <div class="mt-6">
+    <button class="btn btn-primary">Primary</button>
+    <button class="btn btn-secondary">Secondary</button>
+    <button class="btn btn-accent">Accent</button>
+  </div>
+</div>
+{% endblock %}

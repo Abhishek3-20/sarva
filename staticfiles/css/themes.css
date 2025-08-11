@@ -1,0 +1,57 @@
+/* Default Light Theme */
+.theme-light {
+  --bg-color: white;
+  --text-color: black;
+  --primary-color: #570df8; /* Purple (DaisyUI light primary) */
+}
+
+/* Dark Theme */
+.theme-dark {
+  --bg-color: #1d1d1d;
+  --text-color: white;
+  --primary-color: #ff00ff; /* Magenta */
+}
+
+/* Cupcake Theme */
+.theme-cupcake {
+  --bg-color: #faf7f5;
+  --text-color: #291334;
+  --primary-color: #65c3c8; /* Cupcake blue */
+}
+
+/* Corporate Theme */
+.theme-corporate {
+  --bg-color: #ffffff;
+  --text-color: #111827;
+  --primary-color: #4b6bfb; /* Corporate blue */
+}
+
+/* Synthwave Theme */
+.theme-synthwave {
+  --bg-color: #2d1b69;
+  --text-color: #f9f7fd;
+  --primary-color: #ff00ff; /* Neon pink */
+}
+
+/* Valentine Theme */
+.theme-valentine {
+  --bg-color: #fdf2f8;
+  --text-color: #4b0d1f;
+  --primary-color: #e96d7b; /* Pink-red */
+}
+
+/* Apply variables globally */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.navbar {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.footer {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}

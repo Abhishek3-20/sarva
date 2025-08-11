@@ -1,0 +1,83 @@
+/* --- BRAND COLORS (Permanent) --- */
+:root {
+  --brand-pink: #EDAFB8;
+  --brand-peach: #F7E1D7;
+  --brand-beige: #DEDBD2;
+  --brand-sage: #B0C4B1;
+  --brand-charcoal: #4A5759;
+}
+
+/* --- THEMES FOR FUNCTIONAL UI --- */
+
+/* Default Light Theme */
+.theme-light {
+  --bg-color: white;
+  --text-color: black;
+  --primary-color: #570df8;
+}
+
+/* Dark Theme */
+.theme-dark {
+  --bg-color: #1d1d1d;
+  --text-color: white;
+  --primary-color: #ff00ff;
+}
+
+/* Cupcake Theme */
+.theme-cupcake {
+  --bg-color: #faf7f5;
+  --text-color: #291334;
+  --primary-color: #65c3c8;
+}
+
+/* Corporate Theme */
+.theme-corporate {
+  --bg-color: #ffffff;
+  --text-color: #111827;
+  --primary-color: #4b6bfb;
+}
+
+/* Synthwave Theme */
+.theme-synthwave {
+  --bg-color: #2d1b69;
+  --text-color: #f9f7fd;
+  --primary-color: #ff00ff;
+}
+
+/* Valentine Theme */
+.theme-valentine {
+  --bg-color: #fdf2f8;
+  --text-color: #4b0d1f;
+  --primary-color: #e96d7b;
+}
+
+/* --- GLOBAL UI STYLES --- */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.navbar, .footer {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+/* Buttons */
+.btn {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Permanent brand sections (these never change with theme) */
+.brand-section {
+  background-color: var(--brand-sage);
+  color: var(--brand-charcoal);
+}
+
+.brand-doodle {
+  background-color: var(--brand-peach);
+}
